@@ -2,6 +2,7 @@
 # license: GPLv3
 
 import tkinter
+import datetime
 from tkinter.filedialog import *
 from solar_vis import *
 from solar_model import *
@@ -25,6 +26,8 @@ time_step = None
 space_objects = []
 """Список космических объектов."""
 
+_date, _time = str(datetime.datetime.now()).replace(':', '-').split()
+stat_file_name = 'stats/' + _date + '_' + _time + '.txt'
 
 def execution():
     """Функция исполнения -- выполняется циклически, вызывая обработку всех небесных тел,
@@ -39,6 +42,7 @@ def execution():
         update_object_position(space, body)
     physical_time += time_step.get()
     displayed_time.set("%.1f" % physical_time + " seconds gone")
+    save_file_dialog()
 
     if perform_execution:
         space.after(101 - int(time_speed.get()), execution)
@@ -97,8 +101,12 @@ def save_file_dialog():
     функцию считывания параметров системы небесных тел из данного файла.
     Считанные объекты сохраняются в глобальный список space_objects
     """
-    out_filename = asksaveasfilename(filetypes=(("Text file", ".txt"),))
-    write_space_objects_data_to_file(out_filename, space_objects)
+
+    out_file = open(stat_file_name, 'a') #asksaveasfilename(filetypes=(("Text file", ".txt"),))
+    for obj in space_objects:
+        print("%s %d %s %f %f %f %f %f" % (obj.type, obj.R, obj.color, obj.m, obj.x, obj.y, obj.Vx, obj.Vy),
+              file=out_file)
+    out_file.close()
 
 
 def main():
