@@ -101,10 +101,11 @@ def save_file_dialog():
     функцию считывания параметров системы небесных тел из данного файла.
     Считанные объекты сохраняются в глобальный список space_objects
     """
-
+    global physical_time
     out_file = open(stat_file_name, 'a') #asksaveasfilename(filetypes=(("Text file", ".txt"),))
     for obj in space_objects:
-        print("%s %d %s %f %f %f %f %f" % (obj.type, obj.R, obj.color, obj.m, obj.x, obj.y, obj.Vx, obj.Vy),
+        print("%s %d %s %f %f %f %f %f %f" % (obj.type, obj.R, obj.color, obj.m, obj.x, obj.y, obj.Vx, obj.Vy,
+                                              physical_time),
               file=out_file)
     out_file.close()
 
