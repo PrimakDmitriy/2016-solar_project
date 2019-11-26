@@ -116,15 +116,15 @@ def update_object_position(space, body):
                      window_width + 2*r, window_height + 2*r)  # положить за пределы окна
     space.coords(body.image, x - r, y - r, x + r, y + r)
 
-def draw_plot(mas1, mas2):  #график
+def draw_plot(mas1, mas2, varx, vary, typ):  #график
     print('Plotting')
-    plt.plot(mas1, mas2)
-    for i in mas1:
-        print(i)
-    print('^')
-    for i in mas2:
-        print(i)
-    print('%')
+    if typ == 'pt':
+        plt.plot(mas1, mas2)
+    if typ == 'sc':
+        plt.scatter(mas1, mas2, s = 2)
+    plt.xlabel(varx)
+    plt.ylabel(vary)
+    plt.show()
 
 if __name__ == "__main__":
     print("This module is not for direct call!")

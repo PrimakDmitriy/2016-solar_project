@@ -79,9 +79,9 @@ def stop_execution():
     start_button['text'] = "Start"
     start_button['command'] = start_execution
     print('Paused execution.')
-    draw_plot(physical_time_plot, abs_speed_plot) #график
-    draw_plot(physical_time_plot, distance_plot)
-    draw_plot(distance_plot, abs_speed_plot)
+    draw_plot(physical_time_plot, abs_speed_plot, 'Время, СИ', 'Скорость, СИ', 'pt') #график
+    draw_plot(physical_time_plot, distance_plot, 'Время, СИ', 'Расстояние от звезды, СИ', 'pt')
+    draw_plot(distance_plot, abs_speed_plot, 'Расстояние от звезды, СИ', 'Скорость, СИ', 'sc')
 
 
 def open_file_dialog():
