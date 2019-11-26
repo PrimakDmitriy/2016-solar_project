@@ -2,4 +2,7 @@
 Star 30 red 1.98892E30 0 0 0 0
 
 # Земля
-Planet 5 green 5.974E24 120.60E9 0 12E3 29.76E3
+<<<<<<< HEAD
+=======
+Planet 5 green 5.974E24 100.60E9 0 -8.76E3 29.76E3
+>>>>>>> b1b9437b7503796279daaf24cffbddd4376f6ccd

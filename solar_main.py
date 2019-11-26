@@ -25,6 +25,10 @@ time_step = None
 space_objects = []
 """Список космических объектов."""
 
+physical_time_plot = [] #график
+abs_speed_plot = []
+distance_plot = []
+'''массивы данных для рисования графика'''
 
 def execution():
     """Функция исполнения -- выполняется циклически, вызывая обработку всех небесных тел,
@@ -35,8 +39,17 @@ def execution():
     global physical_time
     global displayed_time
     recalculate_space_objects_positions(space_objects, time_step.get())
+    star_x = 0
+    star_y = 0
     for body in space_objects:
         update_object_position(space, body)
+        if body.type == "star":   #график
+            star_x = body.x
+            star_y = body.y
+        if body.type == "planet":
+            physical_time_plot.append(physical_time)
+            abs_speed_plot.append((body.Vx ** 2 + body.Vy ** 2) ** 0.5)
+            distance_plot.append(((body.x-star_x) ** 2 + (body.y-star_y) ** 2) ** 0.5)
     physical_time += time_step.get()
     displayed_time.set("%.1f" % physical_time + " seconds gone")
 
@@ -66,6 +79,9 @@ def stop_execution():
     start_button['text'] = "Start"
     start_button['command'] = start_execution
     print('Paused execution.')
+    draw_plot(physical_time_plot, abs_speed_plot) #график
+    draw_plot(physical_time_plot, distance_plot)
+    draw_plot(distance_plot, abs_speed_plot)
 
 
 def open_file_dialog():

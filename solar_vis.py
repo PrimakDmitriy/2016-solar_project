@@ -6,6 +6,7 @@
 Функции, создающие гaрафические объекты и перемещающие их на экране, принимают
 физические координаты
 """
+import matplotlib.pyplot as plt #график
 
 header_font = "Arial-16"
 """Шрифт в заголовке"""
@@ -115,6 +116,15 @@ def update_object_position(space, body):
                      window_width + 2*r, window_height + 2*r)  # положить за пределы окна
     space.coords(body.image, x - r, y - r, x + r, y + r)
 
+def draw_plot(mas1, mas2):  #график
+    print('Plotting')
+    plt.plot(mas1, mas2)
+    for i in mas1:
+        print(i)
+    print('^')
+    for i in mas2:
+        print(i)
+    print('%')
 
 if __name__ == "__main__":
     print("This module is not for direct call!")
